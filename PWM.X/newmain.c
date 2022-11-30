@@ -1,21 +1,13 @@
-/*
- * File:   newmain.c
- * Author: VINICIUS
- *         PABLO
- *         GABRIELA
- * 
- * Created on 23 de Novembro de 2022, 15:43
- */
-
-
 #include <xc.h>
 
 #include "atraso.h"
 #include "config_4550.h"
+#include "lcd.h"
 
-int
-main() 
-{
+void main(void) {
+    
+    TRISCbits.RC1 = 0; //ventilador
+    
     TRISD = 0x00;
     TRISB = 0x00;
     TRISE = 0x00;  
@@ -24,38 +16,51 @@ main()
     TRISBbits.TRISB1 = 1;
     TRISBbits.TRISB2 = 1;
     TRISBbits.TRISB3 = 1;
-    TRISCbits.RC1 = 0;
     
-    CCP1CON = 0x0C; // set PWM mode
+    PR2 = 199; // period value
+    
+   
+    // PWM CCP2
 
+    
+    // configure timer 2
+    T2CON = 0; // 
+    TMR2 = 0; // clear timer 2 
+    TMR2ON = 1; // habilita timer 2
+    lcd_init();
+    lcd_cmd(L_CLR);
+    
     while(1)
-    {
-        if(TRISBbits.TRISB0 == 0)
+    {         
+        if(PORTBbits.RB0 == 0)
         {
-            CCPR1L = 50; // 25% duty cycle
+            lcd_cmd(L_L1);
+            lcd_str("0%"); 
+            CCP2CON = 0x0C;
+            CCPR2L = 0; // duty cycle 50%
         }
-        
-        if(TRISBbits.TRISB1 == 0)
-        {    
-            CCPR1L = 100; // 50% duty cycle
-            
+        if(PORTBbits.RB1 == 0)
+        { 
+            lcd_cmd(L_L1);
+            lcd_str("25%"); 
+            CCP2CON = 0x0C;
+            CCPR2L = 50;
+             
         }
-        
-        if(TRISBbits.TRISB2 == 0)
+        if(PORTBbits.RB2 == 0)
         {
-                CCPR1L = 150; // 75% duty cycle
-
+            lcd_cmd(L_L1);
+            lcd_str("50%"); 
+            CCP2CON = 0x0C;
+            CCPR2L = 75;
         }
-        
-        if(TRISBbits.TRISB3 == 0)
+        if(PORTBbits.RB3 == 0)
         {
+            lcd_cmd(L_L1);
+            lcd_str("100%"); 
+            CCP2CON = 0x0C;
+            CCPR2L = 150;
         }
-        
-        if(TRISBbits.TRISB4 == 0)
-        {
-        }
-        
     }
-    
-    return 0;
+
 }

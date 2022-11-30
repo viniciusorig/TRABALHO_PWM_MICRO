@@ -14,6 +14,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../../../../Desktop/mplab/MPLAB-vini/PIC18F4550/PIC18F4550/test_b3/src/test_b3.X</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

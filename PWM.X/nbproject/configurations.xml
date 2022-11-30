@@ -6,11 +6,13 @@
                    projectFiles="true">
       <itemPath>config_4550.h</itemPath>
       <itemPath>atraso.h</itemPath>
+      <itemPath>lcd.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
       <itemPath>atraso.c</itemPath>
+      <itemPath>lcd.c</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -25,6 +27,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../../../../Desktop/mplab/MPLAB-vini/PIC18F4550/PIC18F4550/test_b3/src/test_b3.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
